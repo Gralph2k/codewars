@@ -17,14 +17,15 @@ public class DRoot {
         if (n<10) {
             return n;
         } else {
-            return Stream.of(String.valueOf(n).split(""))
+            int result = Stream.of(String.valueOf(n).split(""))
                 .map(Integer::parseInt)
                 .reduce(0, (a,b) -> a+b);
+            return digital_root_v2(result);
         }
     }
 
     public static int digital_root(int n){
-        return n<10 ? n: digital_root(n/10)+n%10;
+        return n<10 ? n: digital_root(digital_root(n/10)+n%10);
     }
 
 
@@ -33,9 +34,9 @@ public class DRoot {
         System.out.println(digital_root_v2(16));
         System.out.println(digital_root(16));
 
-        System.out.println(digital_root_v1(132189));
-        System.out.println(digital_root_v2(132189));
-        System.out.println(digital_root(132189));
+        System.out.println(digital_root_v1(456));
+        System.out.println(digital_root_v2(456));
+        System.out.println(digital_root(456));
 
     }
 
